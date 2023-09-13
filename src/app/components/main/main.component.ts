@@ -127,6 +127,7 @@ export class MainComponent implements OnInit {
        const student = this.mockData[i];
        this.groups[groupIndex].push(student);
     }
+
     // console.log(this.groups)
 
     // for (let i = 0; i < this.groupNumber; i++) {
