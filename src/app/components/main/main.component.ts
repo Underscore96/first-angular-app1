@@ -1,6 +1,7 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/model/student';
+import { ConnectionService} from 'src/app/services/connection.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -19,10 +20,8 @@ export class MainComponent implements OnInit {
   constructor(private dataServ: DataService){}
 
   ngOnInit(): void {
-    this.dataServ.getStudents().then(students => {
-      this.studentsData = students;
-      this.createGroups()
-    })
+    this.studentsData = this.dataServ.studentsArray;
+    this.createGroups();
   }
 
   randomize(): void{
@@ -72,7 +71,6 @@ export class MainComponent implements OnInit {
        const student = this.studentsData[i];
        this.groups[groupIndex].push(student);
     }
-    console.log(this.groups)
     // console.log(this.groups)
 
     // for (let i = 0; i < this.groupNumber; i++) {
@@ -92,4 +90,14 @@ export class MainComponent implements OnInit {
 
     // console.log(this.groups)
   }
+
+  removeStudent(student: Student): void{
+    this.studentsData = this.studentsData.filter(s => s.id !== student.id);
+    this.createGroups()
+  }
+
+  log(){
+    console.log(this.dataServ)
+  }
+
 }

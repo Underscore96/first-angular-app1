@@ -6,9 +6,13 @@ import { Student } from '../model/student';
 })
 export class DataService {
 
+  studentsArray: Student[] = []
+
   constructor() { }
 
-  getStudents():Promise<Student[]> {
-    return fetch('./assets/students.json').then(resp => resp.json())
+  addStudent(student: Student){
+    this.studentsArray.push(student);
+    console.log(this.studentsArray)
   }
+
 }
