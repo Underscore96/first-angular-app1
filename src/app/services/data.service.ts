@@ -11,7 +11,7 @@ export class DataService {
 
   constructor(private connServ: ConnectionService) {
     this.connServ.getStudents().then(students => {
-      this.studentsArray = students;
+      this.studentsArray.push(...students);
     })
   }
 
